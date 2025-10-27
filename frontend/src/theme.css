@@ -1,0 +1,101 @@
+/* Design tokens and theme variables
+   - Defines a set of CSS custom properties to be used across the app
+   - Provides light (default) and dark variants (via [data-theme="dark"]) and a prefers-color-scheme fallback
+*/
+
+:root {
+  /* Colors - accent, background, text, surfaces */
+  --color-accent: #646cff;
+  --color-accent-hover: #535bf2;
+  --color-primary: #0b5fff;
+
+  --color-bg: #ffffff;
+  --color-surface: #f9f9f9;
+  --color-border: rgba(16,24,40,0.06);
+  --color-text: #213547;
+  --color-muted: rgba(33,53,71,0.6);
+
+  /* Dark theme counterparts (used by [data-theme="dark"]) */
+  --color-bg-dark: #121212;
+  --color-surface-dark: #1a1a1a;
+  --color-border-dark: rgba(255,255,255,0.06);
+  --color-text-dark: rgba(255,255,255,0.87);
+  --color-muted-dark: rgba(255,255,255,0.65);
+
+  /* Buttons and controls */
+  --button-bg: var(--color-surface);
+  --button-bg-dark: var(--color-surface-dark);
+  --button-text: var(--color-text);
+  --button-text-dark: var(--color-text-dark);
+
+  /* Typography */
+  --font-family-base: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-1: 0 1px 2px rgba(16,24,40,0.04);
+  --shadow-2: 0 6px 18px rgba(16,24,40,0.08);
+
+  /* Motion */
+  --ease-fast: cubic-bezier(.2,.8,.2,1);
+  --duration-fast: 160ms;
+}
+
+/* Default (light) theme maps */
+:root {
+  --bg: var(--color-bg);
+  --surface: var(--color-surface);
+  --border: var(--color-border);
+  --text: var(--color-text);
+  --muted: var(--color-muted);
+  --accent: var(--color-accent);
+  --accent-hover: var(--color-accent-hover);
+  --button-bg-current: var(--button-bg);
+  --button-text-current: var(--button-text);
+}
+
+/* Dark theme toggle - use on <html data-theme="dark"> or <body data-theme="dark"> */
+[data-theme="dark"] {
+  --bg: var(--color-bg-dark);
+  --surface: var(--color-surface-dark);
+  --border: var(--color-border-dark);
+  --text: var(--color-text-dark);
+  --muted: var(--color-muted-dark);
+  --accent: #8ea1ff; /* softer accent for dark */
+  --accent-hover: #95a6ff;
+  --button-bg-current: var(--button-bg-dark);
+  --button-text-current: var(--button-text-dark);
+}
+
+/* prefers-color-scheme fallback if no data-theme attribute is provided */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: var(--color-bg-dark);
+    --surface: var(--color-surface-dark);
+    --border: var(--color-border-dark);
+    --text: var(--color-text-dark);
+    --muted: var(--color-muted-dark);
+    --accent: #8ea1ff;
+    --accent-hover: #95a6ff;
+    --button-bg-current: var(--button-bg-dark);
+    --button-text-current: var(--button-text-dark);
+  }
+}
+
+/* Small helper utilities (optional) */
+:root {
+  --focus-ring: 4px auto -webkit-focus-ring-color;
+}

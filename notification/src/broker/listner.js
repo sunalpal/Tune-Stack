@@ -1,4 +1,4 @@
-import { subscribeToQueue } from "./rabbit";
+import { subscribeToQueue } from "./rabbit.js";
 import sendEmail from "../utils/email.js";
 function startListener() {
 

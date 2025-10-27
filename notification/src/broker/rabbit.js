@@ -4,8 +4,18 @@ import config from '../config/config.js';
 let channel, connection;
 
 export async function connect() {
-    connection = await amqp.connect(config.RABBITMQ_URL)
+    connection = await amqp.connect(config.RABBITMQ_URI)
 
+
+    connection.on('error', (err) => {
+      console.error('RabbitMQ connection error:', err.message);
+    });
+
+    connection.on('close', () => {
+      console.error('RabbitMQ connection closed. Reconnecting in 5 seconds...');
+      setTimeout(connect, 5000);
+    });
+    
     channel = await connection.createChannel();
     console.log('connected to Rabbitmq');
     

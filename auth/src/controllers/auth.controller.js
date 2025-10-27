@@ -45,17 +45,14 @@ export async function register(req, res) {
     fullname: User.fullname,
     role: User.role,
   });
-  res.cookie("token", token);
+  res.cookie("token", token,{
+  httpOnly: true,   // prevents JS access (good for security)
+  secure: false,    // true if using HTTPS
+  sameSite: 'lax',  // or 'none' if using cross-site cookies with HTTPS
+  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days in ms
+});
 
-  res.status(201).json({
-    message: "User registered successfully",
-    user: {
-      id: User._id,
-      email: User.email,
-      fullname: User.fullname,
-      role: User.role,
-    }
-  });
+  res.redirect('http://localhost:5173');
 }
 
 
@@ -112,14 +109,44 @@ const token= jwt.sign({
 })
 res.cookie('token', token);
 
-res.status(201).json({
-    message:'User registered successfully',
-    user:{
-        id:newUser._id,
-        email:newUser.email,
-        fullname:newUser.fullname,
-        role:newUser.role,
-    }
-})
+res.redirect('http://localhost:5173');
 
+}
+
+export async function login(req,res){
+  const {email,password}=req.body;
+
+  const user=await userModel.findOne({
+    email
+  })
+
+  if(!user) return res.status(400).json({message:"Invalid email or password"});
+
+
+  const isPasswordValid= await bcrypt.compare(password,user.password)
+  if(!isPasswordValid) return res.status(400).json({message:"Invalid email or password"});
+
+
+  const token=jwt.sign({
+    id:user._id,
+    role:user.role
+
+  },config.JWT_SECRET,{expiresIn:"2d"})
+
+  res.cookie("token",token,{
+  httpOnly: true,   // prevents JS access (good for security)
+  secure: false,    // true if using HTTPS
+  sameSite: 'lax',  // or 'none' if using cross-site cookies with HTTPS
+  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days in ms
+});
+
+  res.status(200).json({
+    message:"User logged in successfully",
+    user:{
+       id:user._id,
+       email:user.email,
+       fullname:user.fullname,
+       role:user.role
+    }
+  })
 }

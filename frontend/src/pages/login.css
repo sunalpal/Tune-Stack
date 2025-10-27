@@ -1,0 +1,8 @@
+/**
+ * Login page reuses the same card styles as register but kept as its own file
+ * in case you want divergent styling later.
+ */
+
+@import './register.css';
+
+/* No extra rules needed yet — import keeps consistent visual style */

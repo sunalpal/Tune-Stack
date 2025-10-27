@@ -6,8 +6,7 @@ const router = express.Router();
 
 
 router.post('/register',validationRules.registerValidationRules, authController.register);
-
-export default router;
+router.post('/login',validationRules.loginValidationRules, authController.login);
 
 
 router.get('/google',
@@ -20,3 +19,6 @@ router.get('/google/callback',
   
   authController.googleAuthCallback
 );
+
+
+export default router;

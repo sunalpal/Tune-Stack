@@ -1,0 +1,209 @@
+:root {
+  --bg: #0f0f10;
+  --surface: #1a1a1c;
+  --border: #2c2c2e;
+  --text: #f5f5f7;
+  --muted: #a1a1aa;
+  --accent: #6366f1;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-2: 0 6px 18px rgba(0, 0, 0, 0.6);
+  --duration-fast: 0.2s;
+  --ease-fast: ease-in-out;
+}
+
+/* Page Centering */
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 5px;
+  background: var(--bg);
+}
+
+/* Card container */
+.register-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header section */
+.register-header {
+  text-align: center;
+}
+
+.register-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.6rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.register-header .muted {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Google Button */
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: #111113;
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.google-btn:hover {
+  background: #18181b;
+  transform: translateY(-1px);
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 8px 0 4px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.divider span {
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Form layout */
+.register-form {
+  display: grid;
+  gap: 16px;
+}
+
+.register-form label {
+  display: block;
+}
+
+.register-form .label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.register-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: #121214;
+  color: var(--text);
+  outline: none;
+  box-sizing: border-box;
+  transition: box-shadow var(--duration-fast) var(--ease-fast), border-color var(--duration-fast) var(--ease-fast);
+}
+
+.register-form input:focus {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  border-color: var(--accent);
+}
+
+/* Radio group */
+.radio-group {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.radio-group .label {
+  margin-bottom: 8px;
+}
+
+.radio-row {
+  display: flex;
+  gap: 12px;
+}
+
+.radio-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: #121214;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radio-option input[type="radio"] {
+  width: 16px;
+  height: 16px;
+}
+
+.radio-option:has(input:checked) {
+  border-color: var(--accent);
+  background: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.25);
+}
+
+/* Primary button */
+button.primary {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button.primary:hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+}
+
+/* Sign-in link */
+.sign-in-link {
+  margin-top: 8px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.sign-in-link a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sign-in-link a:hover {
+  text-decoration: underline;
+}
